@@ -1,0 +1,92 @@
+﻿<Window
+    x:Class="RevitAddIn_MyProject.EditZoneWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:RevitAddIn_MyProject"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="400"
+    Height="480"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <TextBlock VerticalAlignment="Center" Text="Available Spaces: " />
+        <TextBlock
+            Grid.Column="4"
+            VerticalAlignment="Center"
+            FontWeight="ExtraBlack"
+            Text="Current Zone Spaces:" />
+        <Button
+            x:Name="addButton"
+            Grid.Row="2"
+            Grid.Column="2"
+            Height="25"
+            VerticalAlignment="Bottom"
+            Click="AddButton_Click"
+            Content="Add"
+            FontWeight="Bold"
+            Foreground="Green"
+            IsEnabled="False" />
+        <Button
+            x:Name="removeButton"
+            Grid.Row="4"
+            Grid.Column="2"
+            Height="25"
+            VerticalAlignment="Top"
+            Click="RemoveButton_Click"
+            Content="Remove"
+            FontWeight="Bold"
+            Foreground="red"
+            IsEnabled="False" />
+        <Button
+            x:Name="OK_Button"
+            Grid.Row="6"
+            Grid.Column="2"
+            Click="OK_Button_Click"
+            Content="_OK" />
+        <ListView
+            x:Name="availableSpacesListView"
+            Grid.Row="2"
+            Grid.RowSpan="3"
+            Background="Beige"
+            GotFocus="availableSpacesListView_GotFocus">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Width="60"
+                        DisplayMemberBinding="{Binding SpaceName}"
+                        Header="Space" />
+                    <GridViewColumn
+                        Width="60"
+                        DisplayMemberBinding="{Binding ZoneName}"
+                        Header="Zone" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListBox
+            x:Name="currentZoneSpacesListBox"
+            Grid.Row="2"
+            Grid.RowSpan="3"
+            Grid.Column="4"
+            Background="AliceBlue"
+            DisplayMemberPath="SpaceName"
+            GotFocus="currentZoneSpacesListBox_GotFocus"
+            SelectionMode="Extended" />
+    </Grid>
+</Window>
